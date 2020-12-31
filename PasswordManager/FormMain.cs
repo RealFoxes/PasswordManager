@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -241,21 +242,25 @@ namespace PasswordManager
 		private void buttonExport_Click(object sender, EventArgs e)
 		{
             string file = File.ReadAllText(pathOfFile);
+            string csvString = "Service;Login;Password;Description;\n";
             file = Decrypt(file, PasswordForCryptGet());
             if (file.StartsWith(keyOfIntegrity))
             {
                 file = file.Replace(keyOfIntegrity, "");
                 var temp = JsonConvert.DeserializeObject<List<Account>>(file);
                 file = JsonConvert.SerializeObject(temp, Formatting.Indented);
+                accounts.ForEach(a => csvString += $"{a.Service};{a.Login};{a.Password};{a.Description};\n");
 
                 using (ZipFile zip = new ZipFile())
                 {
                     zip.Password = PasswordForCryptGet();
 
+                    zip.AddEntry("Passwords.csv", Encoding.UTF8.GetBytes(csvString));
                     zip.AddEntry("Passwords.json", Encoding.UTF8.GetBytes(file));
                     zip.Save("Passwords.zip");
                 }
             }
+            Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory);
         }
 
 		private void buttonDelete_Click(object sender, EventArgs e)
