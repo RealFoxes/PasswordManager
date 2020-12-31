@@ -55,7 +55,7 @@
 			this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panelAuth = new System.Windows.Forms.Panel();
-			this.button1 = new System.Windows.Forms.Button();
+			this.buttonAuth = new System.Windows.Forms.Button();
 			this.labelAuth = new System.Windows.Forms.Label();
 			this.textBoxAuth = new System.Windows.Forms.TextBox();
 			label1 = new System.Windows.Forms.Label();
@@ -321,7 +321,7 @@
 			// 
 			// panelAuth
 			// 
-			this.panelAuth.Controls.Add(this.button1);
+			this.panelAuth.Controls.Add(this.buttonAuth);
 			this.panelAuth.Controls.Add(this.labelAuth);
 			this.panelAuth.Controls.Add(this.textBoxAuth);
 			this.panelAuth.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -332,14 +332,14 @@
 			// 
 			// button1
 			// 
-			this.button1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(444, 317);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(145, 34);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Войти";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.buttonAuth.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.buttonAuth.Location = new System.Drawing.Point(444, 317);
+			this.buttonAuth.Name = "button1";
+			this.buttonAuth.Size = new System.Drawing.Size(145, 34);
+			this.buttonAuth.TabIndex = 2;
+			this.buttonAuth.Text = "Войти";
+			this.buttonAuth.UseVisualStyleBackColor = true;
+			this.buttonAuth.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// labelAuth
 			// 
@@ -386,7 +386,7 @@
 		private System.Windows.Forms.Panel panelAuth;
 		private System.Windows.Forms.Label labelAuth;
 		private System.Windows.Forms.TextBox textBoxAuth;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button buttonAuth;
 		private System.Windows.Forms.ComboBox comboBoxService;
 		private System.Windows.Forms.TextBox textBoxDescription;
 		private System.Windows.Forms.TextBox textBoxPassword;
