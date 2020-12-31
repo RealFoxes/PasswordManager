@@ -239,28 +239,22 @@ namespace PasswordManager
             UpdateDataGridView();
         }
 
-		private void buttonExport_Click(object sender, EventArgs e)
-		{
-            string file = File.ReadAllText(pathOfFile);
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            string jsonString = JsonConvert.SerializeObject(accounts, Formatting.Indented);
             string csvString = "Service;Login;Password;Description;\n";
-            file = Decrypt(file, PasswordForCryptGet());
-            if (file.StartsWith(keyOfIntegrity))
+            accounts.ForEach(a => csvString += $"{a.Service};{a.Login};{a.Password};{a.Description};\n");
+
+            using (ZipFile zip = new ZipFile())
             {
-                file = file.Replace(keyOfIntegrity, "");
-                var temp = JsonConvert.DeserializeObject<List<Account>>(file);
-                file = JsonConvert.SerializeObject(temp, Formatting.Indented);
-                accounts.ForEach(a => csvString += $"{a.Service};{a.Login};{a.Password};{a.Description};\n");
+                zip.Password = PasswordForCryptGet();
 
-                using (ZipFile zip = new ZipFile())
-                {
-                    zip.Password = PasswordForCryptGet();
-
-                    zip.AddEntry("Passwords.csv", Encoding.UTF8.GetBytes(csvString));
-                    zip.AddEntry("Passwords.json", Encoding.UTF8.GetBytes(file));
-                    zip.Save("Passwords.zip");
-                }
+                zip.AddEntry("Passwords.csv", Encoding.UTF8.GetBytes(csvString));
+                zip.AddEntry("Passwords.json", Encoding.UTF8.GetBytes(jsonString));
+                zip.Save("Passwords.zip");
             }
-            Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory);
+
+            Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory); // Open folder with zip
         }
 
 		private void buttonDelete_Click(object sender, EventArgs e)
