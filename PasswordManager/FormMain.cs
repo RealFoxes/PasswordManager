@@ -51,7 +51,7 @@ namespace PasswordManager
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void buttonAuth_Click(object sender, EventArgs e)
 		{
             PasswordForCryptSet(textBoxAuth.Text);
             panelAuth.Visible = !LoadPasswords();

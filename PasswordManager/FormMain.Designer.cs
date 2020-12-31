@@ -334,12 +334,12 @@
 			// 
 			this.buttonAuth.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.buttonAuth.Location = new System.Drawing.Point(444, 317);
-			this.buttonAuth.Name = "button1";
+			this.buttonAuth.Name = "buttonAuth";
 			this.buttonAuth.Size = new System.Drawing.Size(145, 34);
 			this.buttonAuth.TabIndex = 2;
 			this.buttonAuth.Text = "Войти";
 			this.buttonAuth.UseVisualStyleBackColor = true;
-			this.buttonAuth.Click += new System.EventHandler(this.button1_Click);
+			this.buttonAuth.Click += new System.EventHandler(this.buttonAuth_Click);
 			// 
 			// labelAuth
 			// 
