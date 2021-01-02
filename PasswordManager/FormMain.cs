@@ -37,10 +37,12 @@ namespace PasswordManager
 			InitializeComponent();
 			random = new Random();
             accounts = new List<Account>();
+            StringBuilder stringBuilder = new StringBuilder();
 			for (int i = 0; i < 12; i++)
 			{
-                KeyFromPassword += symbols[random.Next(symbols.Length)];
+                stringBuilder.Insert(i, symbols[random.Next(symbols.Length)]);
 			}
+            KeyFromPassword = stringBuilder.ToString();
 		}
 
 		private void textBoxAuth_KeyUp(object sender, KeyEventArgs e)
@@ -219,11 +221,12 @@ namespace PasswordManager
 
 		private void buttonCreatePassword_Click(object sender, EventArgs e)
 		{
-            textBoxPassword.Clear();
+            StringBuilder stringBuilder = new StringBuilder();
 			for (int i = 0; i < 10; i++)
 			{
-                textBoxPassword.Text += symbols[random.Next(symbols.Length)];
+                stringBuilder.Insert(i, symbols[random.Next(symbols.Length)]);
 			}
+            textBoxPassword.Text = stringBuilder.ToString();
 		}
 
 		private void buttonCopyPassword_Click(object sender, EventArgs e)
